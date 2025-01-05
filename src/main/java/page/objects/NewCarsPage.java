@@ -12,25 +12,33 @@ public class NewCarsPage extends BasePage{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void goToToyota() {
-		System.out.println("Tanya-------- inside NewCarsPage-> goToToyota()");
+	public ToyotaCarPage goToToyota() {
+		//System.out.println("Tanya-------- inside NewCarsPage-> goToToyota()");
 		click("toyota_LINK");
-		System.out.println("Tanya-----Page Toyota page Title now is: "+ driver.getTitle());
+		//System.out.println("Tanya-----Page Toyota page Title now is: "+ driver.getTitle());
+		
+		return new ToyotaCarPage();
 	}
 	
-	public void goToBMW() {
+	public BMWCarPage goToBMW() {
 		
 		click("BMW_LINK");
-	}
-	
-	public void goToHona() {
 		
-		click("honda_LINK");
+		return new BMWCarPage();
 	}
 	
-	public void goToKia() {
+	public HyundaiCarPage goToHyundai() {
+		
+		click("hyundai_LINK");
+		
+		return new HyundaiCarPage();
+	}
+	
+	public KiaCarPage goToKia() {
 		
 		click("kia_LINK");
+		
+		return new KiaCarPage();
 	}
 	
 

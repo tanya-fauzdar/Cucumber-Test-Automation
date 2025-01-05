@@ -1,14 +1,17 @@
 package steps;
 
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+
 import io.cucumber.java.After;
-import io.cucumber.java.AfterAll;
-import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
-import io.cucumber.java.BeforeAll;
-import io.cucumber.java.BeforeStep;
+import io.cucumber.java.Scenario;
 import utils.SeleniumDriver;
 
 public class Hooks {
+
+	public WebDriver driver;
 	
 	@Before
 	public void setUpDriver() {
@@ -16,16 +19,31 @@ public class Hooks {
 	}
 
 	@After
-	public void tearDown() {
-		//capturing screenshot before quitting the browser
+	public void tearDown(Scenario scenario) {
+		
+		/*
+		 * capturing screenshot for failes test case before quitting the browser. We
+		 * take Scenario Class of cucumber to check failed scenario and paste code for capture screenshot.
+		 */
+		
+		if(scenario.isFailed()) {
+			driver = SeleniumDriver.getDriver();
+			
+			byte[] screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+			
+			scenario.attach(screenshot, "image/png", "screenshot");
+		}
+		
 		SeleniumDriver.tearDown();
 	}
+
 	/*
 	 * The DB connections will happen only once before the tets suit starts. So,
 	 * this method will be kept under @BeforeAll annotation as it is required before
 	 * any test scenario executes. And it is made a 'static' method as it will be
 	 * executed befre the suite.
 	 */
+
 	/*
 	 * @BeforeAll public static void db_sconn() {
 	 * System.out.println("@BeforeAll ---- Create DB Connection"); }
