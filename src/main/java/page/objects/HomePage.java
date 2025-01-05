@@ -5,11 +5,10 @@ import org.openqa.selenium.interactions.Actions;
 
 import pages.base.BasePage;
 
-public class HomePage extends BasePage{
+public class HomePage extends BasePage {
 	/*
-	 * All the features/functions of the home page
-	 * will be defined here in this HomePage class
-	 * in form of method for each feature/functionality.
+	 * All the features/functions of the home page will be defined here in this
+	 * HomePage class in form of method for each feature/functionality.
 	 */
 
 	public HomePage() {
@@ -17,14 +16,15 @@ public class HomePage extends BasePage{
 		// TODO Auto-generated constructor stub
 	}
 
-	public void mouseHoverNewCars() {
-		
-		/* Calling the key-word method for mouse hover action from Base Class*/
+	public NewCarsPage mouseHoverNewCars() {
+
+		/* Calling the key-word method for mouse hover action from Base Class */
 		mouseHover("newCarmenu_XPATH");
-		
+
+		return new NewCarsPage();
 	}
-	
-	public void clickFindNewCars() {
+
+	public NewCarsPage clickFindNewCars() {
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
@@ -32,15 +32,18 @@ public class HomePage extends BasePage{
 			e.printStackTrace();
 		}
 		click("findNewCars_XPATH");
-		System.out.println("Tanya-----HomePage class-> Page Title now is: "+ driver.getTitle());
+		// System.out.println("Tanya-----HomePage class-> Page Title now is: "+
+		// driver.getTitle());
+
+		return new NewCarsPage();
 	}
-	
+
 	public void searchCars() {
-		
+
 	}
-	
+
 	public void goToMap() {
-		
+
 	}
-	
+
 }
